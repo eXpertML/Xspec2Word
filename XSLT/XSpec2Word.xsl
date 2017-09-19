@@ -1325,7 +1325,7 @@
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="x:param">
+  <xsl:template match="x:description/x:param">
     <w:p>
       <w:pPr>
         <w:pStyle w:val="x:params"/>

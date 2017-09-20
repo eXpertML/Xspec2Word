@@ -11,6 +11,7 @@
   xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml"
   xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint"
   exclude-result-prefixes="#all"
+  expand-text="yes"
   version="3.0">
   
   <!--<xd:doc scope="stylesheet">
@@ -22,6 +23,8 @@
   </xd:doc>-->
 
   <xsl:output indent="yes"/>
+  
+  <xsl:preserve-space elements="w:t"/>
   
   <xsl:param name="fonts" as="element(w:fonts)">
     <w:fonts>
@@ -1013,7 +1016,7 @@
   </xsl:param>
   
   <xsl:param name="xspec-styles">
-    <!-- Paragraph styles used by xspec -->
+    <xsl:comment select="'Paragraph styles used by xspec'"/>
     <w:style w:type="paragraph" w:styleId="x:params">
       <w:name w:val="x:params"/>
       <w:pPr>
@@ -1024,6 +1027,9 @@
           <w:right w:val="single" w:sz="18" wx:bdrwidth="45" w:space="4" w:color="4472C4"/>
         </w:pBdr>
         <w:shd w:val="clear" w:color="auto" w:fill="E7E6E6"/>
+        <w:tabs>
+          <w:tab w:val="right" w:pos="9000"/>
+        </w:tabs>
         <w:spacing w:before="240" w:after="240"/>
         <w:contextualSpacing/>
       </w:pPr>
@@ -1042,6 +1048,9 @@
           <w:right w:val="single" w:sz="18" wx:bdrwidth="45" w:space="4" w:color="70AD47"/>
         </w:pBdr>
         <w:shd w:val="clear" w:color="auto" w:fill="E7E6E6"/>
+        <w:tabs>
+          <w:tab w:val="right" w:pos="9000"/>
+        </w:tabs>
         <w:spacing w:before="600"/>
       </w:pPr>
       <w:rPr>
@@ -1058,6 +1067,7 @@
           <w:bottom w:val="single" w:sz="18" wx:bdrwidth="45" w:space="1" w:color="70AD47"/>
         </w:pBdr>
         <w:spacing w:before="0" w:after="1800"/>
+        <w:contextualSpacing/>
       </w:pPr>
       <w:rPr>
         <wx:font wx:val="Calibri"/>
@@ -1100,6 +1110,7 @@
           <w:bottom w:val="single" w:sz="18" wx:bdrwidth="45" w:space="1" w:color="767171"/>
         </w:pBdr>
         <w:spacing w:before="0" w:after="1800"/>
+        <w:contextualSpacing/>
       </w:pPr>
       <w:rPr>
         <wx:font wx:val="Calibri"/>
@@ -1129,6 +1140,9 @@
           <w:bottom w:val="single" w:sz="24" wx:bdrwidth="60" w:space="1" w:color="auto"/>
         </w:pBdr>
         <w:shd w:val="clear" w:color="auto" w:fill="E7E6E6"/>
+        <w:tabs>
+          <w:tab w:val="right" w:pos="9000"/>
+        </w:tabs>
         <w:spacing w:before="240" w:after="120"/>
       </w:pPr>
       <w:rPr>
@@ -1149,6 +1163,20 @@
       <w:rPr>
         <wx:font wx:val="Calibri"/>
       </w:rPr>
+    </w:style>
+    <w:style w:type="paragraph" w:styleId="x:call-template">
+      <w:name w:val="x:call-template"/>
+      <w:basedOn w:val="x:expect"/>
+      <w:pPr>
+        <w:pBdr>
+          <w:bottom w:val="dashed" w:sz="4" wx:bdrwidth="10" w:space="4" w:color="auto"/>
+        </w:pBdr>
+        <w:contextualSpacing/>
+      </w:pPr>
+    </w:style>
+    <w:style w:type="paragraph" w:styleId="x:call-function">
+      <w:name w:val="x:call-function"/>
+      <w:basedOn w:val="x:call-template"/>
     </w:style>
     <w:style w:type="paragraph" w:styleId="x:expect">
       <w:name w:val="x:expect"/>
@@ -1214,18 +1242,33 @@
       </w:rPr>
       <w:basedOn w:val="normal"/>
     </w:style>
-    <!-- Character styles used by xspec -->
+    <w:style w:type="character" w:styleId="x:container-label">
+      <w:name w:val="x:container-label"/>
+      <w:rPr>
+        <w:b/>
+        <w:smallCaps/>
+        <w:shadow/>
+        <w:sz w:val="32"/>
+        <w:bdr w:val="none" w:sz="0" wx:bdrwidth="0" w:space="0" w:color="auto"/>
+        <w:shd w:val="clear" w:color="auto" w:fill="auto"/>
+      </w:rPr>
+    </w:style>
+    <xsl:comment select="'Character styles used by xspec'"/>
     <w:style w:type="character" w:styleId="x:inline-code">
       <w:name w:val="x:inline-code"/>
       <w:rPr>
         <w:rFonts w:ascii="Courier" w:h-ansi="Courier"/>
         <w:noProof/>
+        <w:bdr w:val="single" w:sz="4" wx:bdrwidth="10" w:space="0" w:color="B4C6E7"/>
+        <w:shd w:val="clear" w:color="auto" w:fill="D9E2F3"/>
       </w:rPr>
     </w:style>
     <w:style w:type="character" w:styleId="x:code-element-furniture">
       <w:name w:val="x:code-element-furniture"/>
       <w:rPr>
         <w:color w:val="0070C0"/>
+        <w:bdr w:val="none" w:sz="0" wx:bdrwidth="0" w:space="0" w:color="auto"/>
+        <w:shd w:val="clear" w:color="auto" w:fill="auto"/>
       </w:rPr>
       <w:basedOn w:val="x:inline-code"/>
     </w:style>
@@ -1234,42 +1277,42 @@
       <w:rPr>
         <w:color w:val="00B0F0"/>
       </w:rPr>
-      <w:basedOn w:val="x:inline-code"/>
+      <w:basedOn w:val="x:code-element-furniture"/>
     </w:style>
     <w:style w:type="character" w:styleId="x:code-attribute-name">
       <w:name w:val="x:code-attribute-name"/>
       <w:rPr>
         <w:color w:val="FF0000"/>
       </w:rPr>
-      <w:basedOn w:val="x:inline-code"/>
+      <w:basedOn w:val="x:code-element-furniture"/>
     </w:style>
     <w:style w:type="character" w:styleId="x:code-attribute-furniture">
       <w:name w:val="x:code-attribute-furniture"/>
       <w:rPr>
         <w:color w:val="0070C0"/>
       </w:rPr>
-      <w:basedOn w:val="x:inline-code"/>
+      <w:basedOn w:val="x:code-element-furniture"/>
     </w:style>
     <w:style w:type="character" w:styleId="x:code-attribute-content">
       <w:name w:val="x:code-attribute-content"/>
       <w:rPr>
         <w:color w:val="ED7D31"/>
       </w:rPr>
-      <w:basedOn w:val="x:inline-code"/>
+      <w:basedOn w:val="x:code-element-furniture"/>
     </w:style>
     <w:style w:type="character" w:styleId="x:code-comment">
       <w:name w:val="x:code-comment"/>
       <w:rPr>
         <w:color w:val="808080"/>
       </w:rPr>
-      <w:basedOn w:val="x:inline-code"/>
+      <w:basedOn w:val="x:code-element-furniture"/>
     </w:style>
     <w:style w:type="character" w:styleId="x:code-pi">
       <w:name w:val="x:code-pi"/>
       <w:rPr>
         <w:color w:val="92D050"/>
       </w:rPr>
-      <w:basedOn w:val="x:inline-code"/>
+      <w:basedOn w:val="x:code-element-furniture"/>
     </w:style>
   </xsl:param>
 
@@ -1316,9 +1359,11 @@
   
   <xsl:mode name="style" on-no-match="shallow-copy"/>
   
-  <xsl:template match="w:outlineLvl" mode="style"/>
+  <xsl:template match="w:style[@w:styleId = $xspec-styles/w:style/@w:styleId]" mode="style"/>
   
-  <xsl:template match="w:style" mode="style">
+  <xsl:template match="w:outlineLvl|w2006:outlineLvl" mode="style #default"/>
+  
+  <xsl:template match="w:styles" mode="style">
     <xsl:copy>
       <xsl:apply-templates select="@*, node()" mode="style"/>
       <xsl:copy-of select="$xspec-styles"/>
@@ -1332,23 +1377,39 @@
       </w:pPr>
       <w:r>
         <w:rPr>
-          <w:b/>
+          <w:rStyle w:val="x:inline-code"/>
         </w:rPr>
-        <w:t xml:space="preserve">Parameter:   </w:t>
+        <w:t>${@name}</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> has value: </w:t>
+      </w:r>
+      <xsl:apply-templates select="@select"/>
+      <w:r>
+        <w:tab/>
       </w:r>
       <w:r>
         <w:rPr>
           <w:rStyle w:val="x:inline-code"/>
         </w:rPr>
-        <w:t>
-          <xsl:attribute name="xml:space" select="'preserve'"/>
-          <xsl:text>$</xsl:text>
-          <xsl:value-of select="@name"/>
-          <xsl:text> = </xsl:text>
-          <xsl:value-of select="xs:string(@select)"/>
-        </w:t>
+        <w:t>{@as}</w:t>
+      </w:r>
+      <w:r>
+        <xsl:if test="@as">
+          <w:t xml:space="preserve"> type </w:t>
+        </xsl:if>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="x:container-label"/>
+        </w:rPr>
+        <w:t>Global Parameter</w:t>
       </w:r>
     </w:p>
+    <xsl:apply-templates select="@href">
+      <xsl:with-param name="pStyle" select="'x:params'"/>
+    </xsl:apply-templates>
+    <xsl:call-template name="xml"/>
   </xsl:template>
 
   <xsl:template match="x:scenario[not(@pending)]">
@@ -1421,6 +1482,114 @@
         </w:t>
       </w:r>
     </w:p>
+  </xsl:template>
+
+  <xsl:template match="x:call[@template]">
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="x:call-template"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="x:inline-code"/>
+        </w:rPr>
+        <w:t>{@template}</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="x:container-label"/>
+        </w:rPr>
+        <w:tab/>
+        <w:t>Named Template</w:t>
+      </w:r>
+    </w:p>
+    <xsl:apply-templates/>
+  </xsl:template>
+  
+  <xsl:template match="x:call[@function]">
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="x:call-function"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="x:inline-code"/>
+        </w:rPr>
+        <w:t>{@function}</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="x:container-label"/>
+        </w:rPr>
+        <w:tab/>
+        <w:t>Function</w:t>
+      </w:r>
+    </w:p>
+    <xsl:apply-templates/>
+  </xsl:template>
+  
+  <xsl:template match="x:call/x:param">
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="x:call-template"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="x:inline-code"/>
+        </w:rPr>
+        <w:t>${@name}</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> has value: </w:t>
+      </w:r>
+      <xsl:apply-templates select="@select"/>
+      <w:r>
+        <w:tab/>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="x:inline-code"/>
+        </w:rPr>
+        <w:t>{@as}</w:t>
+      </w:r>
+      <xsl:if test="@as">
+        <w:r>
+          <w:t xml:space="preserve"> type</w:t>
+        </w:r>
+      </xsl:if>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="x:container-label"/>
+        </w:rPr>
+        <xsl:if test="@tunnel = ('yes', 'true', 1, '1')">
+          <w:t xml:space="preserve"> Tunnel</w:t>
+        </xsl:if>
+        <w:t xml:space="preserve"> Parameter</w:t>
+      </w:r>
+    </w:p>
+    <xsl:apply-templates select="@href"/>
+    <xsl:call-template name="xml"/>
+  </xsl:template>
+  
+  <xsl:template match="x:param/@href">
+    <xsl:param name="pStyle" select="'x:call-template'"/>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="{$pStyle}"/>
+      </w:pPr>
+      <w:r>
+        <w:t>  In file: {.}</w:t>
+      </w:r>
+    </w:p>
+  </xsl:template>
+  
+  <xsl:template match="x:param/@select">
+    <w:r>
+      <w:rPr>
+        <w:rStyle w:val="x:inline-code"/>
+      </w:rPr>
+      <w:t>{.}</w:t>
+    </w:r>
   </xsl:template>
 
   <xsl:template match="x:context">
@@ -1543,12 +1712,14 @@
   </xsl:template>
 
   <xsl:template name="xml">
-    <w:p>
-      <w:pPr>
-        <w:pStyle w:val="x:code"/>
-      </w:pPr>
-      <xsl:apply-templates select="node()" mode="xml"/>
-    </w:p>
+    <xsl:if test="*">
+      <w:p>
+        <w:pPr>
+          <w:pStyle w:val="x:code"/>
+        </w:pPr>
+        <xsl:apply-templates select="node()" mode="xml"/>
+      </w:p>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="*" mode="xml">

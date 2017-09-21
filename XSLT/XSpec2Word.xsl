@@ -1494,9 +1494,11 @@
   </xsl:template>
 
   <xsl:template match="x:call[@template]">
+    <xsl:param name="ScenarioLevel" tunnel="yes" as="xs:integer" select="0"/>
     <w:p>
       <w:pPr>
         <w:pStyle w:val="x:call-template"/>
+        <w:outlineLvl w:val="{$ScenarioLevel}"/>
       </w:pPr>
       <w:r>
         <w:rPr>
@@ -1516,9 +1518,11 @@
   </xsl:template>
   
   <xsl:template match="x:call[@function]">
+    <xsl:param name="ScenarioLevel" tunnel="yes" as="xs:integer" select="0"/>
     <w:p>
       <w:pPr>
         <w:pStyle w:val="x:call-function"/>
+        <w:outlineLvl w:val="{$ScenarioLevel}"/>
       </w:pPr>
       <w:r>
         <w:rPr>
@@ -1602,9 +1606,11 @@
   </xsl:template>
 
   <xsl:template match="x:context">
+    <xsl:param name="ScenarioLevel" tunnel="yes" as="xs:integer" select="0"/>
     <w:p>
       <w:pPr>
         <w:pStyle w:val="x:context"/>
+        <w:outlineLvl w:val="{$ScenarioLevel}"/>
       </w:pPr>
       <xsl:if test="@mode">
         <w:r>
@@ -1647,9 +1653,11 @@
   </xsl:template>
 
   <xsl:template match="x:expect">
+    <xsl:param name="ScenarioLevel" tunnel="yes" as="xs:integer" select="0"/>
     <w:p>
       <w:pPr>
         <w:pStyle w:val="x:expect"/>
+        <w:outlineLvl w:val="{$ScenarioLevel}"/>
       </w:pPr>
       <xsl:apply-templates select="@label"/>
       <w:r>

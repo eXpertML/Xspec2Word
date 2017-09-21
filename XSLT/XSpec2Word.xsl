@@ -10,6 +10,7 @@
   xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml"
   xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml"
   xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint"
+  xmlns:x2w="http://ns.expertml.com/xslt/x2w"
   exclude-result-prefixes="#all"
   expand-text="yes"
   version="3.0">
@@ -1042,6 +1043,7 @@
     <w:style w:type="paragraph" w:styleId="x:scenario-start">
       <w:name w:val="x:scenario-start"/>
       <w:pPr>
+        <w:keepNext w:val="on"/>
         <w:pBdr>
           <w:top w:val="single" w:sz="18" wx:bdrwidth="45" w:space="1" w:color="70AD47"/>
           <w:left w:val="single" w:sz="18" wx:bdrwidth="45" w:space="4" w:color="70AD47"/>
@@ -1062,6 +1064,7 @@
       <w:name w:val="x:scenario-end"/>
       <w:basedOn w:val="x:scenario-start"/>
       <w:pPr>
+        <w:keepNext w:val="off"/>
         <w:pBdr>
           <w:top w:val="none" w:sz="0" wx:bdrwidth="0" w:space="0" w:color="auto"/>
           <w:bottom w:val="single" w:sz="18" wx:bdrwidth="45" w:space="1" w:color="70AD47"/>
@@ -1091,6 +1094,7 @@
       <w:name w:val="x:pending-end"/>
       <w:basedOn w:val="x:pending"/>
       <w:pPr>
+        <w:keepNext w:val="off"/>
         <w:pBdr>
           <w:top w:val="none" w:sz="0" wx:bdrwidth="0" w:space="0" w:color="auto"/>
           <w:bottom w:val="single" w:sz="18" wx:bdrwidth="45" w:space="1" w:color="767171"/>
@@ -1105,6 +1109,7 @@
       <w:name w:val="x:scenario-pending-end"/>
       <w:basedOn w:val="x:scenario-pending"/>
       <w:pPr>
+        <w:keepNext w:val="off"/>
         <w:pBdr>
           <w:top w:val="none" w:sz="0" wx:bdrwidth="0" w:space="0" w:color="auto"/>
           <w:bottom w:val="single" w:sz="18" wx:bdrwidth="45" w:space="1" w:color="767171"/>
@@ -1154,6 +1159,7 @@
       <w:name w:val="x:context-end"/>
       <w:basedOn w:val="x:context"/>
       <w:pPr>
+        <w:keepNext w:val="off"/>
         <w:pBdr>
           <w:top w:val="single" w:sz="24" wx:bdrwidth="60" w:space="1" w:color="auto"/>
           <w:bottom w:val="none" w:sz="0" wx:bdrwidth="0" w:space="0" w:color="auto"/>
@@ -1182,6 +1188,7 @@
       <w:name w:val="x:expect"/>
       <w:basedOn w:val="x:context"/>
       <w:pPr>
+        <w:keepNext w:val="on"/>
         <w:pBdr>
           <w:top w:val="dashed" w:sz="4" wx:bdrwidth="10" w:space="1" w:color="auto"/>
           <w:left w:val="dashed" w:sz="4" wx:bdrwidth="10" w:space="4" w:color="auto"/>
@@ -1211,6 +1218,7 @@
       <w:name w:val="x:expect-end"/>
       <w:basedOn w:val="x:expect"/>
       <w:pPr>
+        <w:keepNext w:val="off"/>
         <w:pBdr>
           <w:top w:val="none" w:sz="0" wx:bdrwidth="0" w:space="0" w:color="auto"/>
           <w:bottom w:val="dashed" w:sz="8" wx:bdrwidth="20" w:space="1" w:color="auto"/>
@@ -1242,6 +1250,7 @@
       </w:rPr>
       <w:basedOn w:val="normal"/>
     </w:style>
+    <xsl:comment select="'Character styles used by xspec'"/>
     <w:style w:type="character" w:styleId="x:container-label">
       <w:name w:val="x:container-label"/>
       <w:rPr>
@@ -1253,7 +1262,6 @@
         <w:shd w:val="clear" w:color="auto" w:fill="auto"/>
       </w:rPr>
     </w:style>
-    <xsl:comment select="'Character styles used by xspec'"/>
     <w:style w:type="character" w:styleId="x:inline-code">
       <w:name w:val="x:inline-code"/>
       <w:rPr>
@@ -1316,33 +1324,33 @@
     </w:style>
   </xsl:param>
 
-  <xsl:template match="node() | @* | w2006:document | w2006:body">
-    <xsl:apply-templates select="node() | @*"/>
+  <xsl:template match="node() | @* | document[x2w:isWord(.)] | body[x2w:isWord(.)]" priority="-0.6">
+    <xsl:apply-templates select="@*, node()"/>
   </xsl:template>
 
   <!-- Copy word elements; Change namespace to friendlier 2003 format -->
-  <xsl:template match="w2006:*">
+  <xsl:template match="*[x2w:isWord(.)]" priority="-0.55">
     <xsl:element name="w:{local-name()}">
-      <xsl:apply-templates select="node() | @*"/>
+      <xsl:apply-templates select="@*, node()"/>
     </xsl:element>
   </xsl:template>
 
   <!-- Wrap runs in paragraphs -->
-  <xsl:template match="w2006:r[not(ancestor::w2006:p)]">
+  <xsl:template match="*:r[x2w:isWord(.) and not(ancestor::*:p[x2w:isWord(.)])]">
     <w:p>
       <w:r>
-        <xsl:apply-templates select="node() | @*"/>
+        <xsl:apply-templates select="@*, node()"/>
       </w:r>
     </w:p>
   </xsl:template>
 
   <!-- Don't forget to output word text -->
-  <xsl:template match="w2006:t/text()">
+  <xsl:template match="*:t[x2w:isWord(.)]/text()">
     <xsl:attribute name="xml:space" select="'preserve'"/>
     <xsl:copy/>
   </xsl:template>
 
-  <xsl:template match="@w2006:*">
+  <xsl:template match="@*[x2w:isWord(.)]">
     <xsl:attribute name="w:{local-name()}" select="."/>
   </xsl:template>
 
@@ -1361,7 +1369,7 @@
   
   <xsl:template match="w:style[@w:styleId = $xspec-styles/w:style/@w:styleId]" mode="style"/>
   
-  <xsl:template match="w:outlineLvl|w2006:outlineLvl" mode="style #default"/>
+  <xsl:template match="*:outlineLvl[x2w:isWord(.)]" mode="style #default"/>
   
   <xsl:template match="w:styles" mode="style">
     <xsl:copy>
@@ -1433,15 +1441,16 @@
         <w:outlineLvl w:val="{$ScenarioLevel}"/>
       </w:pPr>
       <w:r>
-        <w:rPr>
-          <w:b/>
-        </w:rPr>
-        <w:t xml:space="preserve">Scenario start: </w:t>
-      </w:r>
-      <w:r>
         <w:t>
           <xsl:value-of select="@label"/>
         </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="x:container-label"/>
+        </w:rPr>
+        <w:tab/>
+        <w:t xml:space="preserve">Scenario</w:t>
       </w:r>
     </w:p>
     <xsl:apply-templates select="@pending, node()">
@@ -1452,15 +1461,16 @@
         <w:pStyle w:val="{$style}-end"/>
       </w:pPr>
       <w:r>
-        <w:rPr>
-          <w:b/>
-        </w:rPr>
-        <w:t xml:space="preserve">Scenario end: </w:t>
-      </w:r>
-      <w:r>
         <w:t>
           <xsl:value-of select="@label"/>
         </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="x:container-label"/>
+        </w:rPr>
+        <w:tab/>
+        <w:t xml:space="preserve">End Scenario</w:t>
       </w:r>
     </w:p>
   </xsl:template>
@@ -1472,11 +1482,10 @@
       </w:pPr>
       <w:r>
         <w:rPr>
-          <w:b/>
+          <w:i/>
         </w:rPr>
-        <w:t xml:space="preserve">Pending: </w:t>
-      </w:r>
-      <w:r>
+        <w:t>Pending</w:t>
+        <w:tab/>
         <w:t>
           <xsl:value-of select="string()"/>
         </w:t>
@@ -1597,23 +1606,25 @@
       <w:pPr>
         <w:pStyle w:val="x:context"/>
       </w:pPr>
+      <xsl:if test="@mode">
+        <w:r>
+          <w:t xml:space="preserve">In mode:</w:t>
+        </w:r>
+      </xsl:if>
+      <xsl:apply-templates select="@mode"/>
       <w:r>
         <w:rPr>
-          <w:b/>
+          <w:rStyle w:val="x:container-label"/>
         </w:rPr>
-        <xsl:if test="child::w2006:*">
+        <w:tab/>
+        <xsl:if test="x2w:isWord(*)">
           <w:t xml:space="preserve">Word </w:t>
         </xsl:if>
         <w:t>Input</w:t>
-        <xsl:if test="@mode">
-          <w:t xml:space="preserve"> in mode</w:t>
-        </xsl:if>
-        <w:t>:</w:t>
       </w:r>
-      <xsl:apply-templates select="@mode"/>
     </w:p>
     <xsl:choose>
-      <xsl:when test="w2006:*">
+      <xsl:when test="x2w:isWord(*)">
         <xsl:apply-templates/>
       </xsl:when>
       <xsl:when test="* | processing-instruction() | comment()">
@@ -1640,18 +1651,28 @@
       <w:pPr>
         <w:pStyle w:val="x:expect"/>
       </w:pPr>
+      <xsl:apply-templates select="@label"/>
       <w:r>
         <w:rPr>
-          <w:b/>
+          <w:rStyle w:val="x:container-label"/>
         </w:rPr>
-        <w:t xml:space="preserve">Expected result: </w:t>
+        <w:tab/>
+        <w:t xml:space="preserve">Expected </w:t>
+        <xsl:if test="x2w:isWord(*)">
+          <w:t xml:space="preserve">Word </w:t>
+        </xsl:if>
+        <w:t>Output</w:t>
       </w:r>
-      <xsl:apply-templates select="@label"/>
     </w:p>
     <xsl:apply-templates select="@select, @test"/>
-    <xsl:if test="child::* | processing-instruction() | comment()">
-      <xsl:call-template name="xml"/>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="x2w:isWord(*)">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:when test="* | processing-instruction() | comment()">
+        <xsl:call-template name="xml"/>
+      </xsl:when>
+    </xsl:choose>
     <w:p>
       <w:pPr>
         <w:pStyle w:val="x:expect-end"/>
@@ -1692,15 +1713,16 @@
         <w:pStyle w:val="x:pending"/>
       </w:pPr>
       <w:r>
-        <w:rPr>
-          <w:b/>
-        </w:rPr>
-        <w:t xml:space="preserve">Pending: </w:t>
-      </w:r>
-      <w:r>
         <w:t>
           <xsl:value-of select="@label"/>
         </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:i/>
+        </w:rPr>
+        <w:tab/>
+        <w:t xml:space="preserve">Pending</w:t>
       </w:r>
     </w:p>
     <xsl:apply-templates select="node()"/>
@@ -1837,5 +1859,20 @@
         <xsl:value-of select="."/>?&gt;</w:t>
     </w:r>
   </xsl:template>
+
+  <xsl:function name="x2w:isWord" as="xs:boolean">
+    <xsl:param name="nodes" as="node()*"/>
+    <xsl:choose>
+      <xsl:when test="$nodes/namespace-uri() = (
+          'http://schemas.openxmlformats.org/wordprocessingml/2006/main',
+          'http://schemas.microsoft.com/office/word/2003/wordml'
+        )">
+        <xsl:value-of select="true()"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="false()"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
 
 </xsl:stylesheet>

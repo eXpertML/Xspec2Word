@@ -1053,7 +1053,7 @@
         <w:tabs>
           <w:tab w:val="right" w:pos="9000"/>
         </w:tabs>
-        <w:spacing w:before="600"/>
+        <w:spacing w:before="2400"/>
       </w:pPr>
       <w:rPr>
         <wx:font wx:val="Calibri"/>
@@ -1069,7 +1069,7 @@
           <w:top w:val="none" w:sz="0" wx:bdrwidth="0" w:space="0" w:color="auto"/>
           <w:bottom w:val="single" w:sz="18" wx:bdrwidth="45" w:space="1" w:color="70AD47"/>
         </w:pBdr>
-        <w:spacing w:before="0" w:after="1800"/>
+        <w:spacing w:before="0"/>
         <w:contextualSpacing/>
       </w:pPr>
       <w:rPr>
@@ -1149,6 +1149,7 @@
           <w:tab w:val="right" w:pos="9000"/>
         </w:tabs>
         <w:spacing w:before="240" w:after="120"/>
+        <w:contextualSpacing/>
       </w:pPr>
       <w:rPr>
         <wx:font wx:val="Calibri"/>
@@ -1201,8 +1202,8 @@
         <wx:font wx:val="Calibri"/>
       </w:rPr>
     </w:style>
-    <w:style w:type="paragraph" w:styleId="x:expect-details">
-      <w:name w:val="x:expect-details"/>
+    <w:style w:type="paragraph" w:styleId="x:details">
+      <w:name w:val="x:details"/>
       <w:basedOn w:val="x:expect"/>
       <w:pPr>
         <w:pBdr>
@@ -1473,6 +1474,13 @@
         <w:t xml:space="preserve">End Scenario</w:t>
       </w:r>
     </w:p>
+    <xsl:if test="parent::x:scenario">
+      <w:p>
+        <w:pPr>
+          <w:pStyle w:val="x:details"/>
+        </w:pPr>
+      </w:p>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="x:scenario/@pending">
@@ -1699,7 +1707,7 @@
   <xsl:template match="x:expect/@select | x:expect/@test">
     <w:p>
       <w:pPr>
-        <w:pStyle w:val="x:expect-details"/>
+        <w:pStyle w:val="x:expect"/>
       </w:pPr>
       <w:r>
         <w:rPr>

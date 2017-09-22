@@ -1694,7 +1694,7 @@
     </w:r>
   </xsl:template>
 
-  <xsl:template match="x:expect/@select | x:expect/@test">
+  <xsl:template match="x:expect/@test">
     <w:p>
       <w:pPr>
         <w:pStyle w:val="x:expect"/>
@@ -1711,6 +1711,17 @@
         </w:t>
       </w:r>
     </w:p>
+  </xsl:template>
+  
+  <xsl:template match="x:expect/@select">
+      <w:p>
+        <w:pPr>
+          <w:pStyle w:val="x:code"/>
+        </w:pPr>
+        <w:r>
+          <w:t>{.}</w:t>
+        </w:r>
+      </w:p>
   </xsl:template>
 
   <xsl:template match="x:pending">

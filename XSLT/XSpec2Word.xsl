@@ -10,6 +10,7 @@
   xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml"
   xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml"
   xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint"
+  xmlns:x2w="http://ns.expertml.com/xslt/x2w"
   exclude-result-prefixes="#all"
   expand-text="yes"
   version="3.0">
@@ -1036,22 +1037,22 @@
       <w:rPr>
         <wx:font wx:val="Calibri"/>
         <w:sz w:val="32"/>
-        <w:lang w:val="EN-US" w:fareast="EN-US" w:bidi="AR-SA"/>
       </w:rPr>
     </w:style>
     <w:style w:type="paragraph" w:styleId="x:scenario-start">
       <w:name w:val="x:scenario-start"/>
       <w:pPr>
+        <w:keepNext w:val="on"/>
         <w:pBdr>
-          <w:top w:val="single" w:sz="18" wx:bdrwidth="45" w:space="1" w:color="70AD47"/>
-          <w:left w:val="single" w:sz="18" wx:bdrwidth="45" w:space="4" w:color="70AD47"/>
-          <w:right w:val="single" w:sz="18" wx:bdrwidth="45" w:space="4" w:color="70AD47"/>
+          <w:top w:val="single" w:sz="24" wx:bdrwidth="60" w:space="24" w:color="70AD47"/>
+          <w:left w:val="single" w:sz="24" wx:bdrwidth="60" w:space="4" w:color="70AD47"/>
+          <w:bottom w:val="dash-small-gap" w:sz="4" wx:bdrwidth="10" w:space="12" w:color="70AD47"/>
+          <w:right w:val="single" w:sz="24" wx:bdrwidth="60" w:space="4" w:color="70AD47"/>
         </w:pBdr>
-        <w:shd w:val="clear" w:color="auto" w:fill="E7E6E6"/>
+        <w:shd w:val="clear" w:color="auto" w:fill="E2EFD9"/>
         <w:tabs>
           <w:tab w:val="right" w:pos="9000"/>
         </w:tabs>
-        <w:spacing w:before="600"/>
       </w:pPr>
       <w:rPr>
         <wx:font wx:val="Calibri"/>
@@ -1062,11 +1063,11 @@
       <w:name w:val="x:scenario-end"/>
       <w:basedOn w:val="x:scenario-start"/>
       <w:pPr>
+        <w:keepNext w:val="off"/>
         <w:pBdr>
-          <w:top w:val="none" w:sz="0" wx:bdrwidth="0" w:space="0" w:color="auto"/>
-          <w:bottom w:val="single" w:sz="18" wx:bdrwidth="45" w:space="1" w:color="70AD47"/>
+          <w:top w:val="dashed" w:sz="4" wx:bdrwidth="10" w:space="6" w:color="70AD47"/>
+          <w:bottom w:val="single" w:sz="24" wx:bdrwidth="60" w:space="6" w:color="70AD47"/>
         </w:pBdr>
-        <w:spacing w:before="0" w:after="1800"/>
         <w:contextualSpacing/>
       </w:pPr>
       <w:rPr>
@@ -1078,24 +1079,12 @@
       <w:basedOn w:val="x:scenario-start"/>
       <w:pPr>
         <w:pBdr>
-          <w:top w:val="single" w:sz="18" wx:bdrwidth="45" w:space="1" w:color="767171"/>
-          <w:left w:val="single" w:sz="18" wx:bdrwidth="45" w:space="4" w:color="767171"/>
-          <w:right w:val="single" w:sz="18" wx:bdrwidth="45" w:space="4" w:color="767171"/>
+          <w:top w:val="single" w:sz="24" wx:bdrwidth="60" w:space="24" w:color="767171"/>
+          <w:left w:val="single" w:sz="24" wx:bdrwidth="60" w:space="4" w:color="767171"/>
+          <w:right w:val="single" w:sz="24" wx:bdrwidth="60" w:space="4" w:color="767171"/>
+          <w:bottom w:val="dash-small-gap" w:sz="4" wx:bdrwidth="10" w:space="12" w:color="767171"/>
         </w:pBdr>
-      </w:pPr>
-      <w:rPr>
-        <wx:font wx:val="Calibri"/>
-      </w:rPr>
-    </w:style>
-    <w:style w:type="paragraph" w:styleId="x:pending-end">
-      <w:name w:val="x:pending-end"/>
-      <w:basedOn w:val="x:pending"/>
-      <w:pPr>
-        <w:pBdr>
-          <w:top w:val="none" w:sz="0" wx:bdrwidth="0" w:space="0" w:color="auto"/>
-          <w:bottom w:val="single" w:sz="18" wx:bdrwidth="45" w:space="1" w:color="767171"/>
-        </w:pBdr>
-        <w:spacing w:after="240"/>
+        <w:shd w:val="clear" w:color="auto" w:fill="E7E6E6"/>
       </w:pPr>
       <w:rPr>
         <wx:font wx:val="Calibri"/>
@@ -1103,47 +1092,53 @@
     </w:style>
     <w:style w:type="paragraph" w:styleId="x:scenario-pending-end">
       <w:name w:val="x:scenario-pending-end"/>
+      <w:basedOn w:val="x:scenario-end"/>
+      <w:pPr>
+        <w:keepNext w:val="off"/>
+        <w:pBdr>
+          <w:left w:val="single" w:sz="24" wx:bdrwidth="60" w:space="4" w:color="767171"/>
+          <w:bottom w:val="single" w:sz="24" wx:bdrwidth="60" w:space="6" w:color="767171"/>
+          <w:right w:val="single" w:sz="24" wx:bdrwidth="60" w:space="4" w:color="767171"/>
+        </w:pBdr>
+        <w:shd w:val="clear" w:color="auto" w:fill="E7E6E6"/>
+      </w:pPr>
+      <w:rPr>
+        <wx:font wx:val="Calibri"/>
+      </w:rPr>
+    </w:style>
+    <w:style w:type="paragraph" w:styleId="x:pending">
+      <w:name w:val="x:pending"/>
       <w:basedOn w:val="x:scenario-pending"/>
       <w:pPr>
         <w:pBdr>
-          <w:top w:val="none" w:sz="0" wx:bdrwidth="0" w:space="0" w:color="auto"/>
-          <w:bottom w:val="single" w:sz="18" wx:bdrwidth="45" w:space="1" w:color="767171"/>
+          <w:top w:val="dashed" w:sz="8" wx:bdrwidth="20" w:space="6" w:color="767171"/>
+          <w:bottom w:val="dashed" w:sz="4" wx:bdrwidth="10" w:space="6" w:color="70AD47"/>
         </w:pBdr>
-        <w:spacing w:before="0" w:after="1800"/>
-        <w:contextualSpacing/>
       </w:pPr>
-      <w:rPr>
-        <wx:font wx:val="Calibri"/>
-      </w:rPr>
     </w:style>
-    <w:style w:type="paragraph" w:styleId="x:scenario-pending">
-      <w:name w:val="x:scenario-pending"/>
-      <w:basedOn w:val="x:scenario-start"/>
-      <w:rsid w:val="00547639"/>
+    <w:style w:type="paragraph" w:styleId="x:pending-end">
+      <w:name w:val="x:pending-end"/>
+      <w:basedOn w:val="x:scenario-pending-end"/>
       <w:pPr>
         <w:pBdr>
-          <w:top w:val="single" w:sz="18" wx:bdrwidth="45" w:space="1" w:color="767171"/>
-          <w:left w:val="single" w:sz="18" wx:bdrwidth="45" w:space="4" w:color="767171"/>
-          <w:right w:val="single" w:sz="18" wx:bdrwidth="45" w:space="4" w:color="767171"/>
+          <w:top w:val="dashed" w:sz="8" wx:bdrwidth="20" w:space="6" w:color="70AD47"/>
+          <w:bottom w:val="dashed" w:sz="8" wx:bdrwidth="20" w:space="12" w:color="767171"/>
         </w:pBdr>
-        <w:spacing w:before="0"/>
       </w:pPr>
       <w:rPr>
         <wx:font wx:val="Calibri"/>
       </w:rPr>
-    </w:style>
+    </w:style>  
     <w:style w:type="paragraph" w:styleId="x:context">
       <w:name w:val="x:context"/>
+      <w:basedOn w:val="x:scenario-start"/>
       <w:pPr>
-        <w:keepNext/>
         <w:pBdr>
-          <w:bottom w:val="single" w:sz="24" wx:bdrwidth="60" w:space="1" w:color="auto"/>
+          <w:top w:val="single" w:sz="8" wx:bdrwidth="20" w:space="6" w:color="70AD47"/>
+          <w:bottom w:val="dash-small-gap" w:sz="4" wx:bdrwidth="10" w:space="6" w:color="ED7D31"/>
         </w:pBdr>
-        <w:shd w:val="clear" w:color="auto" w:fill="E7E6E6"/>
-        <w:tabs>
-          <w:tab w:val="right" w:pos="9000"/>
-        </w:tabs>
-        <w:spacing w:before="240" w:after="120"/>
+        <w:shd w:val="clear" w:color="auto" w:fill="FBE4D5"/>
+        <w:contextualSpacing/>
       </w:pPr>
       <w:rPr>
         <wx:font wx:val="Calibri"/>
@@ -1154,11 +1149,11 @@
       <w:name w:val="x:context-end"/>
       <w:basedOn w:val="x:context"/>
       <w:pPr>
+        <w:keepNext w:val="off"/>
         <w:pBdr>
-          <w:top w:val="single" w:sz="24" wx:bdrwidth="60" w:space="1" w:color="auto"/>
-          <w:bottom w:val="none" w:sz="0" wx:bdrwidth="0" w:space="0" w:color="auto"/>
+          <w:top w:val="dashed" w:sz="8" wx:bdrwidth="20" w:space="6" w:color="ED7D31"/>
+          <w:bottom w:val="dashed" w:sz="8" wx:bdrwidth="20" w:space="12" w:color="70AD47"/>
         </w:pBdr>
-        <w:spacing w:before="120" w:after="240"/>
       </w:pPr>
       <w:rPr>
         <wx:font wx:val="Calibri"/>
@@ -1166,12 +1161,11 @@
     </w:style>
     <w:style w:type="paragraph" w:styleId="x:call-template">
       <w:name w:val="x:call-template"/>
-      <w:basedOn w:val="x:expect"/>
+      <w:basedOn w:val="x:context"/>
       <w:pPr>
         <w:pBdr>
-          <w:bottom w:val="dashed" w:sz="4" wx:bdrwidth="10" w:space="4" w:color="auto"/>
+          <w:bottom w:val="dashed" w:sz="4" wx:bdrwidth="10" w:space="6" w:color="70AD47"/>
         </w:pBdr>
-        <w:contextualSpacing/>
       </w:pPr>
     </w:style>
     <w:style w:type="paragraph" w:styleId="x:call-function">
@@ -1183,25 +1177,10 @@
       <w:basedOn w:val="x:context"/>
       <w:pPr>
         <w:pBdr>
-          <w:top w:val="dashed" w:sz="4" wx:bdrwidth="10" w:space="1" w:color="auto"/>
-          <w:left w:val="dashed" w:sz="4" wx:bdrwidth="10" w:space="4" w:color="auto"/>
-          <w:bottom w:val="none" w:sz="0" wx:bdrwidth="0" w:space="0" w:color="auto"/>
-          <w:right w:val="dashed" w:sz="4" wx:bdrwidth="10" w:space="4" w:color="auto"/>
+          <w:top w:val="single" w:sz="8" wx:bdrwidth="20" w:space="12" w:color="70AD47"/>
+          <w:bottom w:val="dashed" w:sz="8" wx:bdrwidth="20" w:space="6" w:color="4472C4"/>
         </w:pBdr>
-        <w:spacing w:after="0"/>
-      </w:pPr>
-      <w:rPr>
-        <wx:font wx:val="Calibri"/>
-      </w:rPr>
-    </w:style>
-    <w:style w:type="paragraph" w:styleId="x:expect-details">
-      <w:name w:val="x:expect-details"/>
-      <w:basedOn w:val="x:expect"/>
-      <w:pPr>
-        <w:pBdr>
-          <w:top w:val="none" w:sz="0" wx:bdrwidth="0" w:space="0" w:color="auto"/>
-        </w:pBdr>
-        <w:spacing w:before="0"/>
+        <w:shd w:val="clear" w:color="auto" w:fill="D9E2F3"/>
       </w:pPr>
       <w:rPr>
         <wx:font wx:val="Calibri"/>
@@ -1211,37 +1190,46 @@
       <w:name w:val="x:expect-end"/>
       <w:basedOn w:val="x:expect"/>
       <w:pPr>
+        <w:keepNext w:val="off"/>
         <w:pBdr>
-          <w:top w:val="none" w:sz="0" wx:bdrwidth="0" w:space="0" w:color="auto"/>
-          <w:bottom w:val="dashed" w:sz="8" wx:bdrwidth="20" w:space="1" w:color="auto"/>
+          <w:top w:val="dashed" w:sz="4" wx:bdrwidth="10" w:space="6" w:color="4472C4"/>
+          <w:bottom w:val="single" w:sz="8" wx:bdrwidth="20" w:space="12" w:color="70AD47"/>
         </w:pBdr>
-        <w:spacing w:before="0" w:after="120"/>
       </w:pPr>
     </w:style>
-    <w:style w:type="paragraph" w:styleId="x:pending">
-      <w:name w:val="x:pending"/>
-      <w:basedOn w:val="x:scenario-pending"/>
+    <w:style w:type="paragraph" w:styleId="x:details">
+      <w:name w:val="x:details"/>
+      <w:basedOn w:val="x:expect-end"/>
+      <w:pPr>
+        <w:pBdr>
+          <w:top w:val="single" w:sz="2" wx:bdrwidth="5" w:space="6" w:color="E7E6E6"/>
+          <w:bottom w:val="single" w:sz="2" wx:bdrwidth="5" w:space="6" w:color="E7E6E6"/>
+        </w:pBdr>
+        <w:shd w:val="clear" w:color="auto" w:fill="E7E6E6"/>
+      </w:pPr>
+      <w:rPr>
+        <wx:font wx:val="Calibri"/>
+      </w:rPr>
     </w:style>
     <w:style w:type="paragraph" w:styleId="x:code">
       <w:name w:val="x:code"/>
+      <w:basedOn w:val="x:expect"/>
       <w:pPr>
+        <w:keepNext w:val="off"/>
+        <w:keepLines/>
         <w:pBdr>
-          <w:top w:val="single" w:sz="4" wx:bdrwidth="20" w:space="1" w:color="auto" w:shadow="on"/>
-          <w:left w:val="single" w:sz="4" wx:bdrwidth="20" w:space="4" w:color="auto" w:shadow="on"/>
-          <w:bottom w:val="single" w:sz="4" wx:bdrwidth="20" w:space="1" w:color="auto" w:shadow="on"/>
-          <w:right w:val="single" w:sz="4" wx:bdrwidth="20" w:space="4" w:color="auto" w:shadow="on"/>
+          <w:top w:val="dashed" w:sz="4" wx:bdrwidth="10" w:space="6" w:color="70AD47"/>
+          <w:bottom w:val="dashed" w:sz="4" wx:bdrwidth="10" w:space="6" w:color="70AD47"/>
         </w:pBdr>
-        <w:spacing w:before="120" w:after="120"/>
-        <w:ind w:left="284" w:right="284"/>
-        <w:contextualSpacing/>
+        <w:shd w:val="clear" w:color="auto" w:fill="auto"/>
       </w:pPr>
       <w:rPr>
         <w:rFonts w:ascii="Courier" w:h-ansi="Courier"/>
         <wx:font wx:val="Courier"/>
         <w:noProof/>
       </w:rPr>
-      <w:basedOn w:val="normal"/>
     </w:style>
+    <xsl:comment select="'Character styles used by xspec'"/>
     <w:style w:type="character" w:styleId="x:container-label">
       <w:name w:val="x:container-label"/>
       <w:rPr>
@@ -1253,7 +1241,6 @@
         <w:shd w:val="clear" w:color="auto" w:fill="auto"/>
       </w:rPr>
     </w:style>
-    <xsl:comment select="'Character styles used by xspec'"/>
     <w:style w:type="character" w:styleId="x:inline-code">
       <w:name w:val="x:inline-code"/>
       <w:rPr>
@@ -1316,33 +1303,33 @@
     </w:style>
   </xsl:param>
 
-  <xsl:template match="node() | @* | w2006:document | w2006:body">
-    <xsl:apply-templates select="node() | @*"/>
+  <xsl:template match="node() | @* | document[x2w:isWord(.)] | body[x2w:isWord(.)]" priority="-0.6">
+    <xsl:apply-templates select="@*, node()"/>
   </xsl:template>
 
   <!-- Copy word elements; Change namespace to friendlier 2003 format -->
-  <xsl:template match="w2006:*">
+  <xsl:template match="*[x2w:isWord(.)]" priority="-0.55">
     <xsl:element name="w:{local-name()}">
-      <xsl:apply-templates select="node() | @*"/>
+      <xsl:apply-templates select="@*, node()"/>
     </xsl:element>
   </xsl:template>
 
   <!-- Wrap runs in paragraphs -->
-  <xsl:template match="w2006:r[not(ancestor::w2006:p)]">
+  <xsl:template match="*:r[x2w:isWord(.) and not(ancestor::*:p[x2w:isWord(.)])]">
     <w:p>
       <w:r>
-        <xsl:apply-templates select="node() | @*"/>
+        <xsl:apply-templates select="@*, node()"/>
       </w:r>
     </w:p>
   </xsl:template>
 
   <!-- Don't forget to output word text -->
-  <xsl:template match="w2006:t/text()">
+  <xsl:template match="*:t[x2w:isWord(.)]/text()">
     <xsl:attribute name="xml:space" select="'preserve'"/>
     <xsl:copy/>
   </xsl:template>
 
-  <xsl:template match="@w2006:*">
+  <xsl:template match="@*[x2w:isWord(.)]">
     <xsl:attribute name="w:{local-name()}" select="."/>
   </xsl:template>
 
@@ -1361,7 +1348,7 @@
   
   <xsl:template match="w:style[@w:styleId = $xspec-styles/w:style/@w:styleId]" mode="style"/>
   
-  <xsl:template match="w:outlineLvl|w2006:outlineLvl" mode="style #default"/>
+  <xsl:template match="*:outlineLvl[x2w:isWord(.)]" mode="style #default"/>
   
   <xsl:template match="w:styles" mode="style">
     <xsl:copy>
@@ -1427,21 +1414,29 @@
   <xsl:template name="x:scenario">
     <xsl:param name="style" required="yes" as="xs:string"/>
     <xsl:param name="ScenarioLevel" tunnel="yes" as="xs:integer" select="0"/>
+    <xsl:if test="parent::x:scenario and not(preceding-sibling::*[1][self::x:scenario])">
+      <w:p>
+        <w:pPr>
+          <w:pStyle w:val="x:details"/>
+        </w:pPr>
+      </w:p>
+    </xsl:if>
     <w:p>
       <w:pPr>
         <w:pStyle w:val="{$style}-start"/>
         <w:outlineLvl w:val="{$ScenarioLevel}"/>
       </w:pPr>
       <w:r>
-        <w:rPr>
-          <w:b/>
-        </w:rPr>
-        <w:t xml:space="preserve">Scenario start: </w:t>
-      </w:r>
-      <w:r>
         <w:t>
           <xsl:value-of select="@label"/>
         </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="x:container-label"/>
+        </w:rPr>
+        <w:tab/>
+        <w:t xml:space="preserve">Scenario</w:t>
       </w:r>
     </w:p>
     <xsl:apply-templates select="@pending, node()">
@@ -1452,31 +1447,42 @@
         <w:pStyle w:val="{$style}-end"/>
       </w:pPr>
       <w:r>
-        <w:rPr>
-          <w:b/>
-        </w:rPr>
-        <w:t xml:space="preserve">Scenario end: </w:t>
-      </w:r>
-      <w:r>
         <w:t>
           <xsl:value-of select="@label"/>
         </w:t>
       </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="x:container-label"/>
+        </w:rPr>
+        <w:tab/>
+        <w:t xml:space="preserve">End Scenario</w:t>
+      </w:r>
     </w:p>
+    <xsl:choose>
+      <xsl:when test="parent::x:scenario">
+        <w:p>
+          <w:pPr>
+            <w:pStyle w:val="x:details"/>
+          </w:pPr>
+        </w:p>
+      </xsl:when>
+      <xsl:otherwise>
+        <w:p/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="x:scenario/@pending">
     <w:p>
       <w:pPr>
-        <w:pStyle w:val="x:scenario-pending"/>
+        <w:pStyle w:val="x:scenario-pending-start"/>
       </w:pPr>
       <w:r>
         <w:rPr>
-          <w:b/>
+          <w:i/>
         </w:rPr>
         <w:t xml:space="preserve">Pending: </w:t>
-      </w:r>
-      <w:r>
         <w:t>
           <xsl:value-of select="string()"/>
         </w:t>
@@ -1485,9 +1491,11 @@
   </xsl:template>
 
   <xsl:template match="x:call[@template]">
+    <xsl:param name="ScenarioLevel" tunnel="yes" as="xs:integer" select="0"/>
     <w:p>
       <w:pPr>
         <w:pStyle w:val="x:call-template"/>
+        <w:outlineLvl w:val="{$ScenarioLevel}"/>
       </w:pPr>
       <w:r>
         <w:rPr>
@@ -1507,9 +1515,11 @@
   </xsl:template>
   
   <xsl:template match="x:call[@function]">
+    <xsl:param name="ScenarioLevel" tunnel="yes" as="xs:integer" select="0"/>
     <w:p>
       <w:pPr>
         <w:pStyle w:val="x:call-function"/>
+        <w:outlineLvl w:val="{$ScenarioLevel}"/>
       </w:pPr>
       <w:r>
         <w:rPr>
@@ -1593,27 +1603,31 @@
   </xsl:template>
 
   <xsl:template match="x:context">
+    <xsl:param name="ScenarioLevel" tunnel="yes" as="xs:integer" select="0"/>
     <w:p>
       <w:pPr>
         <w:pStyle w:val="x:context"/>
+        <w:outlineLvl w:val="{$ScenarioLevel}"/>
       </w:pPr>
+      <xsl:if test="@mode">
+        <w:r>
+          <w:t xml:space="preserve">In mode:</w:t>
+        </w:r>
+      </xsl:if>
+      <xsl:apply-templates select="@mode"/>
       <w:r>
         <w:rPr>
-          <w:b/>
+          <w:rStyle w:val="x:container-label"/>
         </w:rPr>
-        <xsl:if test="child::w2006:*">
+        <w:tab/>
+        <xsl:if test="x2w:isWord(*)">
           <w:t xml:space="preserve">Word </w:t>
         </xsl:if>
         <w:t>Input</w:t>
-        <xsl:if test="@mode">
-          <w:t xml:space="preserve"> in mode</w:t>
-        </xsl:if>
-        <w:t>:</w:t>
       </w:r>
-      <xsl:apply-templates select="@mode"/>
     </w:p>
     <xsl:choose>
-      <xsl:when test="w2006:*">
+      <xsl:when test="x2w:isWord(*)">
         <xsl:apply-templates/>
       </xsl:when>
       <xsl:when test="* | processing-instruction() | comment()">
@@ -1636,22 +1650,34 @@
   </xsl:template>
 
   <xsl:template match="x:expect">
+    <xsl:param name="ScenarioLevel" tunnel="yes" as="xs:integer" select="0"/>
     <w:p>
       <w:pPr>
         <w:pStyle w:val="x:expect"/>
+        <w:outlineLvl w:val="{$ScenarioLevel}"/>
       </w:pPr>
+      <xsl:apply-templates select="@label"/>
       <w:r>
         <w:rPr>
-          <w:b/>
+          <w:rStyle w:val="x:container-label"/>
         </w:rPr>
-        <w:t xml:space="preserve">Expected result: </w:t>
+        <w:tab/>
+        <w:t xml:space="preserve">Expected </w:t>
+        <xsl:if test="x2w:isWord(*)">
+          <w:t xml:space="preserve">Word </w:t>
+        </xsl:if>
+        <w:t>Output</w:t>
       </w:r>
-      <xsl:apply-templates select="@label"/>
     </w:p>
     <xsl:apply-templates select="@select, @test"/>
-    <xsl:if test="child::* | processing-instruction() | comment()">
-      <xsl:call-template name="xml"/>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="x2w:isWord(*)">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:when test="* | processing-instruction() | comment()">
+        <xsl:call-template name="xml"/>
+      </xsl:when>
+    </xsl:choose>
     <w:p>
       <w:pPr>
         <w:pStyle w:val="x:expect-end"/>
@@ -1667,10 +1693,10 @@
     </w:r>
   </xsl:template>
 
-  <xsl:template match="x:expect/@select | x:expect/@test">
+  <xsl:template match="x:expect/@test">
     <w:p>
       <w:pPr>
-        <w:pStyle w:val="x:expect-details"/>
+        <w:pStyle w:val="x:expect"/>
       </w:pPr>
       <w:r>
         <w:rPr>
@@ -1685,6 +1711,17 @@
       </w:r>
     </w:p>
   </xsl:template>
+  
+  <xsl:template match="x:expect/@select">
+      <w:p>
+        <w:pPr>
+          <w:pStyle w:val="x:code"/>
+        </w:pPr>
+        <w:r>
+          <w:t>{.}</w:t>
+        </w:r>
+      </w:p>
+  </xsl:template>
 
   <xsl:template match="x:pending">
     <w:p>
@@ -1692,15 +1729,16 @@
         <w:pStyle w:val="x:pending"/>
       </w:pPr>
       <w:r>
-        <w:rPr>
-          <w:b/>
-        </w:rPr>
-        <w:t xml:space="preserve">Pending: </w:t>
-      </w:r>
-      <w:r>
         <w:t>
           <xsl:value-of select="@label"/>
         </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:i/>
+        </w:rPr>
+        <w:tab/>
+        <w:t xml:space="preserve">Pending</w:t>
       </w:r>
     </w:p>
     <xsl:apply-templates select="node()"/>
@@ -1837,5 +1875,20 @@
         <xsl:value-of select="."/>?&gt;</w:t>
     </w:r>
   </xsl:template>
+
+  <xsl:function name="x2w:isWord" as="xs:boolean">
+    <xsl:param name="nodes" as="node()*"/>
+    <xsl:choose>
+      <xsl:when test="$nodes/namespace-uri() = (
+          'http://schemas.openxmlformats.org/wordprocessingml/2006/main',
+          'http://schemas.microsoft.com/office/word/2003/wordml'
+        )">
+        <xsl:value-of select="true()"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="false()"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
 
 </xsl:stylesheet>
